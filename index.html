@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel = "stylesheet" href = "">
+    <style>
+        #kwtPerMaane {
+            margin-bottom: 10px;
+        }
+    </style>
+    </head>
+    <body>
+        <form id="reg">
+        <label>Kwt per måned</label>
+        <input type="text" id="kwtPerMaane" placeholder="Skriv inn her" required step="any"><br>
+        <label>Måned</label>
+        <select id ="maaned"><option id="januar">Januar</option>
+            <option id="Februar">Februar</option>
+            <option id="mars">Mars</option>
+            <option id="april">April</option>
+            <option id="mai">Mai</option>
+            <option id="juni">Juni</option>
+            <option id="juli">Juli</option>
+            <option id="august">August</option>
+            <option id="september">September</option>
+            <option id="oktober">Oktober</option>
+            <option id="november">November</option>
+            <option id="desember">Desember</option>
+        </select>
+        <button type="submit">Registrer</button>
+        
+    </form>
+    <div id="total"></div>
+    <div id="gjennomsnitt"></div>
+    <table id="pris"></table>
+        <script>
+            var reg = document.getElementById("reg");
+            var kwtPerMaane = document.getElementById("kwtPerMaane");
+            var maaned = document.getElementById("maaned");
+            var array = [];
+
+            var prisKwt = 1.45;
+
+            reg.onsubmit = function(evt) {
+                evt.preventDefault();
+                array.push({KwtPerMaane: kwtPerMaane.value, Maaned: maaned.value});
+                console.log(array);
+                kostnadRekning();
+            }
+            function kostnadRekning() {
+                pris.innerHTML="";
+                var kwtTotal = 0;
+                var prisTotal = 0;
+                for(var el of array) {
+                    if(array.length > 0) {
+                        pris.innerHTML += "<tr><td><p>Pris " + el.Maaned + ": " + Number(el.KwtPerMaane) * prisKwt + "kr</p></td><tr>kwt " + el.Maaned + " " + el.KwtPerMaane + "kwt<br></tr></td>"
+                        prisTotal += Number(el.KwtPerMaane) * prisKwt;
+                        kwtTotal += Number(el.KwtPerMaane);
+                        total.innerHTML = "<p>Total pris er: " + prisTotal + "kr.</p>Til saman har du kjøpt " + kwtTotal + "kwt"
+                    }
+                }
+                var maanedAntall = 0;
+                for(var tal of array) {
+                    if(tal.maaned === "januar"||tal.maaned ==="februar"||tal.maaned ==="mars"||tal.maaned ==="april"||tal.maaned ==="mai"||tal.maaned ==="juni"||tal.maaned ==="juli"||tal.maaned ==="august"||tal.maaned ==="september"||tal.maaned ==="oktober"||tal.maaned ==="november"||tal.maaned ==="desember");
+                    maanedAntall++
+                    gjennomsnitt.innerHTML = "<p>Gjennomsnitt pris: "+ prisTotal / maanedAntall +"kr</p> <p>Gjennomsnitt Kwt: " + kwtTotal / maanedAntall + "kwt</p>";
+                }
+            }
+    
+        
+        </script>
+    </body>
+</html>
+
+    
+    
+    
+    
+
+
+
+
